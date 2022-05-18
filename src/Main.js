@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { _handleError, _throwSpecificError } from "./errors/getPokemons";
 import "./App.css";
+import { ContainerPokemons, MainContainer } from "./styles/Main";
+import { CardPokemon } from "./components/CardPokemon";
+import { InfoPokemon } from "./components/InfoPokemon";
 
 const Main = () => {
   const [pokemons, setpokemons] = useState([]);
@@ -55,9 +58,46 @@ const Main = () => {
   }, [url]);
 
   return (
-    <div className="app">
+    <MainContainer>
+      <InfoPokemon data={pokeDex}/>
+      <ContainerPokemons>
+        {loading ? (
+          <p>cargando...</p>
+        ) : (
+          pokemons.map((pokemon) => (
+            <CardPokemon
+              key={pokemon.id}
+              {...pokemon}
+              infoPokemon={(pok) => setPokeDex(pok)}
+            />
+          ))
+        )}
+      </ContainerPokemons>
       {errorState.hasError && <div>{errorState.message}</div>}
-    </div>
+      <div className="btn-group">
+        {prevUrl && (
+          <button
+            onClick={() => {
+              setpokemons([]);
+              setUrl(prevUrl);
+            }}
+          >
+            Previous
+          </button>
+        )}
+
+        {nextUrl && (
+          <button
+            onClick={() => {
+              setpokemons([]);
+              setUrl(nextUrl);
+            }}
+          >
+            Next
+          </button>
+        )}
+      </div>
+    </MainContainer>
   );
 };
 
