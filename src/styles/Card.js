@@ -15,14 +15,13 @@ export const Card = styled.div`
   display: flex;
   padding: 15px 10px 15px 15px;
   border-radius: 20px;
-  /* align-items : center; */
-  position: relative;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  min-height: 100px;
+  height: 120px;
   width: 300px;
   border: 1px solid rgba(0, 0, 0, 0.35);
-  margin: 10px;
+  margin: 5px;
+  /* color: ${(props) => props.theme.secondary}; */
   ${(props) => {
     switch (props.type) {
       case "rock":
@@ -69,8 +68,8 @@ export const Card = styled.div`
   }}
 
   &:hover {
-    animation: ${bounce} .5s  ;
-    border : 1px solid black;
+    animation: ${bounce} 0.5s;
+    border: 1px solid ${(props) => props.theme.secondary};
   }
 `;
 

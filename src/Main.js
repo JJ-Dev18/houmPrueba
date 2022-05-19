@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { _handleError, _throwSpecificError } from "./errors/getPokemons";
 import "./App.css";
-import { ContainerPokemons, MainContainer } from "./styles/Main";
+import { Button, ContainerPokemons, ContentButtons, MainContainer } from "./styles/Main";
 import { CardPokemon } from "./components/CardPokemon";
 import { InfoPokemon } from "./components/InfoPokemon";
+import Skeleton from "./styles/Skeleton";
+
+const cantPokemones = 12;
 
 const Main = () => {
   const [pokemons, setpokemons] = useState([]);
@@ -11,7 +14,9 @@ const Main = () => {
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   const [pokeDex, setPokeDex] = useState();
-  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
+  const [url, setUrl] = useState(
+    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${cantPokemones}`
+  );
   const [errorState, setErrorState] = useState({ hasError: false });
 
   const handleError = (err) => {
@@ -28,7 +33,10 @@ const Main = () => {
       setNextUrl(res.next);
       setPrevUrl(res.previous);
       getObjectPokemons(res.results);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+        
+      }, 2000);
     } catch (error) {
       handleError(error);
     }
@@ -53,16 +61,21 @@ const Main = () => {
     }
   };
 
+
   useEffect(() => {
     getPokemons();
   }, [url]);
-
+  
   return (
     <MainContainer>
-      <InfoPokemon data={pokeDex}/>
+      <InfoPokemon data={pokeDex} />
+      <h1>Pokemons</h1>
+
       <ContainerPokemons>
         {loading ? (
-          <p>cargando...</p>
+          <>
+            <Skeleton numPokemones={cantPokemones} />
+          </>
         ) : (
           pokemons.map((pokemon) => (
             <CardPokemon
@@ -74,29 +87,29 @@ const Main = () => {
         )}
       </ContainerPokemons>
       {errorState.hasError && <div>{errorState.message}</div>}
-      <div className="btn-group">
+      <ContentButtons className="btn-group">
         {prevUrl && (
-          <button
+          <Button
             onClick={() => {
               setpokemons([]);
               setUrl(prevUrl);
             }}
           >
             Previous
-          </button>
+          </Button>
         )}
 
         {nextUrl && (
-          <button
+          <Button
             onClick={() => {
               setpokemons([]);
               setUrl(nextUrl);
             }}
           >
             Next
-          </button>
+          </Button>
         )}
-      </div>
+      </ContentButtons>
     </MainContainer>
   );
 };
