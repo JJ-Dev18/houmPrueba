@@ -7,6 +7,7 @@ import { Card } from './Card';
   justify-content: center;
   align-items: center;
   padding: 20px;
+  margin-top: 15px;
   /* flex-basis: 50%; */
   height: 50%vh;
 `;
@@ -17,17 +18,20 @@ export const Pokedex = styled(Card)`
   align-items: center;
   flex-direction: column;
   width: 350px;
-  box-shadow : 4px 4px 30px rgb(0 43 41 / 15%);
-  position : relative;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  /* box-shadow: 4px 4px 30px rgb(0 43 41 / 15%); */
+  position: relative;
   height: ${(props) => (props.home ? "200px" : "500px")};
-  padding: 20px;
+  /* padding: 20px; */
 
   &:hover {
     animation: none;
     border: 1px solid rgba(0, 0, 0, 0.35);
   }
   h1 {
-    color: ${(props) => props.theme.secondary};
+    color: ${(props) => props.theme.titulos};
     font-weight: bold;
   }
 `;

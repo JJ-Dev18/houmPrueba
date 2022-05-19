@@ -3,20 +3,34 @@ import { createContext, useContext, useReducer } from "react";
 
 export const ModeContext = createContext(null);
 
-const initialState = {
-  darkMode : false,
-  lightMode : true
+const initialState = JSON.parse(localStorage.getItem("mode")) || {
+  darkMode: false,
+  lightMode: true,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "darkMode": {
+     localStorage.setItem(
+       "mode",
+       JSON.stringify({
+         darkMode: true,
+         lightMode: false,
+       })
+     ); 
      return {
        darkMode: true,
        lightMode: false,
      };
     }
     case 'lightMode':{
+      localStorage.setItem(
+        "mode",
+        JSON.stringify({
+          darkMode: false,
+          lightMode: true,
+        })
+      ); 
        return {
          darkMode: false,
          lightMode: true,

@@ -16,7 +16,7 @@ import { darkTheme, GlobalStyles, ligthTheme } from "./utils/modes";
 import { ThemeProvider } from "styled-components";
 import { darkMode, lightMode } from "./context/actions";
 
-const cantPokemones = 10;
+const cantPokemones = 20;
 
 
 const Main = () => {
@@ -32,14 +32,13 @@ const Main = () => {
   const { value } = useModeContext();
   const { state, dispatch } = value;
   console.log(state)
-
   const handleError = (err) => {
     setErrorState({ hasError: true, message: err.message });
   };
   const toggleDarkmode = ()=>{
-   
    (state.darkMode) ? dispatch(lightMode()) : dispatch(darkMode());
-    console.log(state.darkMode);
+    // (state.darkMode) ? dispatch(lightMode()) : dispatch(darkMode());
+   
   }
   const getPokemons = async () => {
     try {
@@ -129,7 +128,10 @@ const Main = () => {
             </Button>
           )}
         </ContentButtons>
-        <Toogle onClick={toggleDarkmode}>Cambiar modo</Toogle>
+        <Toogle onClick={toggleDarkmode} active={state.lightMode}>
+          <span><i className="fas fa-sun"></i></span>
+          <span><i className="fas fa-moon"></i></span>
+        </Toogle>
       </MainContainer>
     </ThemeProvider>
   );

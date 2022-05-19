@@ -14,7 +14,7 @@ export const darkTheme = {
   button: " #FF452B ",
   titulos: "#263238",
   text: "white",
-  background: "#607D8B ",
+  background: "black ",
   hoverButton: "rgb(178, 48, 30)",
 };
 

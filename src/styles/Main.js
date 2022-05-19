@@ -1,17 +1,16 @@
 import styled from 'styled-components'  
 
 export const MainContainer = styled.div`
-  height:100%;
-  width:100% ;
+  height: 100%;
+  width: 100%;
   display: flex;
- 
   flex-direction: column;
   /* justify-content: center; */
-  align-items : center;
-  /* overflow-y:scroll; */
+  align-items: center;
+  /* overflow-x:hidden; */
   /* background: ${(props) => props.theme.text}; */
   h1 {
-    color: ${props => props.theme.text};
+    color: ${(props) => props.theme.text};
     text-align: center;
     margin: 10px;
   }
@@ -33,9 +32,7 @@ export const ContentButtons = styled.div`
   margin: 10px 0;
   justify-content: space-around;
   /* align-items: center; */
-  @media (max-width: 768px) {
-  
-  }
+ 
 `;
 
 
@@ -65,8 +62,42 @@ export const Button = styled.button`
 
 
 export const Toogle = styled.button`
+  background-color: ${(props) =>
+    props.active ? props.theme.button : props.theme.titulos};
+  color: ${(props) => (props.active ? props.theme.text : props.theme.button)};
+  border-radius: 1000px;
+  border: none;
+  display: flex;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
 
-position:absolute ;
-top: 5px;
-right : 50%;
-`
+  @media (min-width: 768px) {
+    right: 20px;
+  }
+  &:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-color: ${(props) =>
+      props.active ? props.theme.background : props.theme.button};
+    left: ${(props) => (props.active ? "unset" : 0)};
+    top: 0;
+    right: ${(props) => (props.active ? 0 : "unset")};
+    border-radius: 100px;
+    transition: 0.2s ease all;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+  span {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    background: none;
+    color: ${(props) =>
+      props.active ? props.theme.background : props.theme.text};
+  }
+`;
