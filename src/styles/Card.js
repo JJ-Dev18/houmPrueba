@@ -17,6 +17,7 @@ export const Card = styled.div`
   border-radius: 20px;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px; */
   height: 120px;
   width: 300px;
   border: 1px solid rgba(0, 0, 0, 0.35);

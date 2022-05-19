@@ -2,8 +2,10 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { _handleError, _throwSpecificError } from "./errors/errors";
 import "./App.css";
 import {
+  Buscador,
   Button,
   ContainerPokemons,
+  ContentBuscador,
   ContentButtons,
   MainContainer,
   Toogle,
@@ -25,20 +27,33 @@ const Main = () => {
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   const [pokeDex, setPokeDex] = useState();
+  const [filter, setfilter] = useState("");
   const [url, setUrl] = useState(
     `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${cantPokemones}`
   );
   const [errorState, setErrorState] = useState({ hasError: false });
   const { value } = useModeContext();
   const { state, dispatch } = value;
-  console.log('renderizado el main')
-  const handleError = (err) => {
-    setErrorState({ hasError: true, message: err.message });
-  };
+ 
+  const handleError = useCallback((err) => setErrorState({ hasError: true, message: err.message }), []);
+
   const toggleDarkmode = () => {
-    state.darkMode ? dispatch(lightMode()) : dispatch(darkMode());
+    (state.darkMode) ? dispatch(lightMode()) : dispatch(darkMode());
   };
   const infoPokemon = useCallback((poke) => setPokeDex(poke), []);
+
+  const handleFilter = (e,data)=> {
+    let name = e.target.value
+   
+    if (name !== "") {
+      name = name.toLowerCase();
+      setpokemons(data.filter( (poke) => poke.name.toLowerCase().includes(name)))
+    }
+    else{
+      setpokemons(data)
+    }
+  
+  }
 
   const getPokemons = async () => {
     try {
@@ -88,6 +103,8 @@ const Main = () => {
         <InfoPokemon data={pokeDex} />
         <h1>Pokémones</h1>
 
+        <Buscador onChange={(e)=> handleFilter(e,pokemons)} placeholder="Filtrar Pokemon" />
+   
         <ContainerPokemons>
           {loading ? (
             <>
@@ -135,7 +152,8 @@ const Main = () => {
             <i className="fas fa-moon"></i>
           </span>
         </Toogle>
-        <SearchInput />
+
+        <p>{filter}</p>
       </MainContainer>
     </ThemeProvider>
   );

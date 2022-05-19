@@ -1,15 +1,12 @@
 import React,{ useState } from 'react'
 import { Buscador } from '../styles/Main'
 
-export const SearchInput = () => {
+export const SearchInput = ({handleFilter}) => {
   const [search, setsearch] = useState('')
-  const handleSearch = (e)=>{
-   console.log(e.target.value)
-   setsearch(e.target.value)
-  }
+ 
   return (
     <>
-    <Buscador  onChange={handleSearch}/>
+    <Buscador  onChange={(e)=>handleFilter(e.target.value)}/>
     <p>{search}</p>
     </>
   )

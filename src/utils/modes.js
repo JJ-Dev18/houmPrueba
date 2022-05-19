@@ -8,14 +8,20 @@ export const ligthTheme = {
   titulos: "black",
   button: " #FF452B ",
   hoverButton: "rgb(178, 48, 30)",
+  inputs: " #f5f5f5",
+  inputHover: "rgba(0, 0, 0, 0.09)",
+  border : "none"
 };
 
 export const darkTheme = {
   button: " #FF452B ",
   titulos: "#263238",
   text: "white",
-  background: "black ",
+  background: "#0d1117",
   hoverButton: "rgb(178, 48, 30)",
+  inputs: "#263238",
+  inputHover: "#263240",
+  border: "#0d1117",
 };
 
 export const GlobalStyles = createGlobalStyle`

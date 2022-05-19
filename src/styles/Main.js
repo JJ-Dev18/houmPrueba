@@ -1,5 +1,5 @@
 import styled from 'styled-components'  
-
+import poke from '../images/pokebola.png'
 export const MainContainer = styled.div`
   height: 100%;
   width: 100%;
@@ -82,6 +82,9 @@ export const Toogle = styled.button`
     width: 30px;
     height: 30px;
     position: absolute;
+    background: url(${poke}) center;
+    background-size : 30px 30px;
+
     background-color: ${(props) =>
       props.active ? props.theme.background : props.theme.button};
     left: ${(props) => (props.active ? "unset" : 0)};
@@ -103,11 +106,34 @@ export const Toogle = styled.button`
 `;
 
 export const Buscador = styled.input`
-width:370px ;
-padding:15px ;
+  font: inherit;
+  color: ${props => props.theme.text};
+  width: 300px;
+  /* border: 1px solid ${props => props.theme.border}; */
+  height: 1.1876em;
+  border : none;
+  margin: 0;
+  display: block;
+  background-color: ${props => props.theme.inputs};
+  min-width: 0;
+  box-sizing: content-box;
+  animation-name: mui-auto-fill-cancel;
+  letter-spacing: inherit;
+  animation-duration: 10ms;
+  -webkit-tap-highlight-color: transparent;
+  padding: 12px 16px;
+  border-radius: 2rem;
+  padding-right: 24px;
+  margin: 10px 0 ;
 
-&:after {
-    content: "3";
-}
+  &:focus{
+    border: 2px solid ${(props) => props.theme.button};
+    outline: none ;
+  }
+  &:hover{
+    background-color : ${props => props.theme.inputHover}
+  }
 
 `;
+
+
