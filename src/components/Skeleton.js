@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 
  const SkeletonCard =( props) => {
-   
   return (
     <ContentLoader
       width={300}
@@ -21,7 +20,8 @@ import PropTypes from 'prop-types'
 }
 
 const Skeleton = ({numPokemones = 12})=>{
- 
+   console.log("render skeleton");
+  
    const list = []
 
   for(let i = 0; i < numPokemones; i++){

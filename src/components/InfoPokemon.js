@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { ContainerInfo, ImagenPokemon, Logo, Pokedex } from '../styles/Info'
 
-export const InfoPokemon = ({data}) => {
+export const InfoPokemon = memo(({data}) => {
   const tipo = data?.types[0].type.name; 
-  
+
   return (
     <ContainerInfo>
       {!data ? (
@@ -20,13 +20,13 @@ export const InfoPokemon = ({data}) => {
             alt={`imagen ${data.name}`}
           />
           <div className="abilities">
-            {data.abilities.map((poke) => {
+            {data.abilities.map((poke,i) => {
               return (
-                <>
+                <React.Fragment key={i}>
                   <div className="group">
                     <h2>{poke.ability.name}</h2>
                   </div>
-                </>
+                </React.Fragment>
               );
             })}
           </div>
@@ -35,4 +35,4 @@ export const InfoPokemon = ({data}) => {
       )}
     </ContainerInfo>
   );
-}
+})

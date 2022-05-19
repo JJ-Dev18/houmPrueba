@@ -16,7 +16,7 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const ContainerPokemons = styled.div`
+export const ContainerPokemons = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -100,4 +100,14 @@ export const Toogle = styled.button`
     color: ${(props) =>
       props.active ? props.theme.background : props.theme.text};
   }
+`;
+
+export const Buscador = styled.input`
+width:370px ;
+padding:15px ;
+
+&:after {
+    content: "3";
+}
+
 `;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { _handleError, _throwSpecificError } from "./errors/errors";
 import "./App.css";
 import {
@@ -15,9 +15,9 @@ import useModeContext from "./context/ModeContext";
 import { darkTheme, GlobalStyles, ligthTheme } from "./utils/modes";
 import { ThemeProvider } from "styled-components";
 import { darkMode, lightMode } from "./context/actions";
+import { SearchInput } from "./components/SearchInput";
 
 const cantPokemones = 20;
-
 
 const Main = () => {
   const [pokemons, setpokemons] = useState([]);
@@ -31,15 +31,15 @@ const Main = () => {
   const [errorState, setErrorState] = useState({ hasError: false });
   const { value } = useModeContext();
   const { state, dispatch } = value;
-  console.log(state)
+  console.log('renderizado el main')
   const handleError = (err) => {
     setErrorState({ hasError: true, message: err.message });
   };
-  const toggleDarkmode = ()=>{
-   (state.darkMode) ? dispatch(lightMode()) : dispatch(darkMode());
-    // (state.darkMode) ? dispatch(lightMode()) : dispatch(darkMode());
-   
-  }
+  const toggleDarkmode = () => {
+    state.darkMode ? dispatch(lightMode()) : dispatch(darkMode());
+  };
+  const infoPokemon = useCallback((poke) => setPokeDex(poke), []);
+
   const getPokemons = async () => {
     try {
       setLoading(true);
@@ -78,13 +78,12 @@ const Main = () => {
 
   useEffect(() => {
     getPokemons();
+    
   }, [url]);
-
-
 
   return (
     <ThemeProvider theme={state.darkMode ? darkTheme : ligthTheme}>
-      <GlobalStyles/>
+      <GlobalStyles />
       <MainContainer>
         <InfoPokemon data={pokeDex} />
         <h1>Pokémones</h1>
@@ -99,7 +98,7 @@ const Main = () => {
               <CardPokemon
                 key={pokemon.id}
                 {...pokemon}
-                infoPokemon={(pok) => setPokeDex(pok)}
+                infoPokemon={infoPokemon}
               />
             ))
           )}
@@ -129,9 +128,14 @@ const Main = () => {
           )}
         </ContentButtons>
         <Toogle onClick={toggleDarkmode} active={state.lightMode}>
-          <span><i className="fas fa-sun"></i></span>
-          <span><i className="fas fa-moon"></i></span>
+          <span>
+            <i className="fas fa-sun"></i>
+          </span>
+          <span>
+            <i className="fas fa-moon"></i>
+          </span>
         </Toogle>
+        <SearchInput />
       </MainContainer>
     </ThemeProvider>
   );
