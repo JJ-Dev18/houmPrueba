@@ -10,10 +10,9 @@ import PropTypes from 'prop-types'
       width={300}
       height={120}
       viewBox="0 0 750 290"
-      // backgroundColor="#dedede"
       backgroundColor="#f0f0f0"
       foregroundColor="#e6e6e6"
-      // foregroundColor="#f0f0f0"
+   
       {...props}
     >
       <rect x="8" y="4" rx="30" ry="30" width="730" height="290" />
@@ -27,7 +26,7 @@ const Skeleton = ({numPokemones = 12})=>{
 
   for(let i = 0; i < numPokemones; i++){
     list.push(
-        <SkeletonCard/>
+        <SkeletonCard key={i}/>
     );
   }
   return(
@@ -38,3 +37,7 @@ const Skeleton = ({numPokemones = 12})=>{
 }
 
 export default Skeleton;
+
+Skeleton.propTypes = {
+ numPokemones : PropTypes.number.isRequired
+};

@@ -8,7 +8,7 @@ export const InfoPokemon = ({data}) => {
     <ContainerInfo>
       {!data ? (
         <>
-          <img src="https://houm.com/static/brandImage/houmLogo.svg" />
+          <img src="https://houm.com/static/brandImage/houmLogo.svg" alt='logo gris houm'/>
           <h1>Pokedex</h1>
           <br />
         </>

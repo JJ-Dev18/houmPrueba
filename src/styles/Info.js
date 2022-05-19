@@ -16,7 +16,8 @@ export const Pokedex = styled(Card)`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  width: 375px;
+  width: 350px;
+  box-shadow : 4px 4px 30px rgb(0 43 41 / 15%);
   position : relative;
   height: ${(props) => (props.home ? "200px" : "500px")};
   padding: 20px;
