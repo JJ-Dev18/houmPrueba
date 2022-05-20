@@ -21,7 +21,7 @@ export const darkTheme = {
   hoverButton: "rgb(178, 48, 30)",
   inputs: "#263238",
   inputHover: "#263240",
-  border: "#0d1117",
+  border: "#8b949e",
 };
 
 export const GlobalStyles = createGlobalStyle`

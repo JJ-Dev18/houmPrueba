@@ -71,7 +71,9 @@ export const Toogle = styled.button`
   outline: none;
   cursor: pointer;
   position: absolute;
-  top: 5px;
+  top: 0;
+  right: 3px ;
+  margin: 10px 0;
 
   @media (min-width: 768px) {
     right: 20px;
@@ -83,7 +85,7 @@ export const Toogle = styled.button`
     height: 30px;
     position: absolute;
     background: url(${poke}) center;
-    background-size : 30px 30px;
+    background-size: 30px 30px;
 
     background-color: ${(props) =>
       props.active ? props.theme.background : props.theme.button};
@@ -91,13 +93,13 @@ export const Toogle = styled.button`
     top: 0;
     right: ${(props) => (props.active ? 0 : "unset")};
     border-radius: 100px;
-    transition: 0.2s ease all;
+    transition: 4s ease all;
     box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
   }
   span {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 33px;
+    height: 33px;
+    line-height: 33px;
     display: block;
     background: none;
     color: ${(props) =>
@@ -107,14 +109,14 @@ export const Toogle = styled.button`
 
 export const Buscador = styled.input`
   font: inherit;
-  color: ${props => props.theme.text};
-  width: 300px;
-  /* border: 1px solid ${props => props.theme.border}; */
-  height: 1.1876em;
-  border : none;
+  color: ${(props) => props.theme.text};
+  width: ${(props) => (props.search ? "260px" : "300px")};
+  /* border: 1px solid ${(props) => props.theme.border}; */
+  height: 0.7em;
+  border: none;
   margin: 0;
   display: block;
-  background-color: ${props => props.theme.inputs};
+  background-color: ${(props) => props.theme.inputs};
   min-width: 0;
   box-sizing: content-box;
   animation-name: mui-auto-fill-cancel;
@@ -124,16 +126,21 @@ export const Buscador = styled.input`
   padding: 12px 16px;
   border-radius: 2rem;
   padding-right: 24px;
-  margin: 10px 0 ;
-
-  &:focus{
+  margin: 10px 0;
+  position: ${(props) => (props.search ? "absolute" : "static")};
+  top: 0;
+  right: 70px;
+  @media screen and (min-width: 768px) {
+    right: 90px;
+    width : 300px;
+  }
+  &:focus {
     border: 2px solid ${(props) => props.theme.button};
-    outline: none ;
+    outline: none;
   }
-  &:hover{
-    background-color : ${props => props.theme.inputHover}
+  &:hover {
+    background-color: ${(props) => props.theme.inputHover};
   }
-
 `;
 
 

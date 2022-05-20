@@ -18,8 +18,9 @@ import { darkTheme, GlobalStyles, ligthTheme } from "./utils/modes";
 import { ThemeProvider } from "styled-components";
 import { darkMode, lightMode } from "./context/actions";
 import { SearchInput } from "./components/SearchInput";
+import { ScreenCards } from "./components/ScreenCards";
 
-const cantPokemones = 20;
+const cantPokemones = 10;
 
 const Main = () => {
   const [pokemons, setpokemons] = useState([]);
@@ -27,7 +28,6 @@ const Main = () => {
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   const [pokeDex, setPokeDex] = useState();
-  const [filter, setfilter] = useState("");
   const [url, setUrl] = useState(
     `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${cantPokemones}`
   );
@@ -42,18 +42,7 @@ const Main = () => {
   };
   const infoPokemon = useCallback((poke) => setPokeDex(poke), []);
 
-  const handleFilter = (e,data)=> {
-    let name = e.target.value
-   
-    if (name !== "") {
-      name = name.toLowerCase();
-      setpokemons(data.filter( (poke) => poke.name.toLowerCase().includes(name)))
-    }
-    else{
-      setpokemons(data)
-    }
-  
-  }
+ 
 
   const getPokemons = async () => {
     try {
@@ -72,7 +61,7 @@ const Main = () => {
     }
   };
 
-  const getObjectPokemons = async (res) => {
+  const getObjectPokemons =  (res) => {
     try {
       res.map(async (pokemon) => {
         const response = await fetch(pokemon.url);
@@ -101,26 +90,8 @@ const Main = () => {
       <GlobalStyles />
       <MainContainer>
         <InfoPokemon data={pokeDex} />
-        <h1>Pokémones</h1>
-
-        <Buscador onChange={(e)=> handleFilter(e,pokemons)} placeholder="Filtrar Pokemon" />
-   
-        <ContainerPokemons>
-          {loading ? (
-            <>
-              <Skeleton numPokemones={cantPokemones} />
-            </>
-          ) : (
-            pokemons.map((pokemon) => (
-              <CardPokemon
-                key={pokemon.id}
-                {...pokemon}
-                infoPokemon={infoPokemon}
-              />
-            ))
-          )}
-        </ContainerPokemons>
-        {errorState.hasError && <div>{errorState.message}</div>}
+        <ScreenCards data={pokemons}  loading={loading}  cantPokemones={cantPokemones} infoPokemon={infoPokemon} />
+        {/* {errorState.hasError && <div>{errorState.message}</div>} */}
         <ContentButtons className="btn-group">
           {prevUrl && (
             <Button
@@ -153,7 +124,6 @@ const Main = () => {
           </span>
         </Toogle>
 
-        <p>{filter}</p>
       </MainContainer>
     </ThemeProvider>
   );

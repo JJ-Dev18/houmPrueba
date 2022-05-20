@@ -1,26 +1,61 @@
-import React, { memo } from 'react'
+import React, { memo,useRef,useState,useEffect } from 'react'
+import { _handleError } from '../errors/errors';
 import { ContainerInfo, ImagenPokemon, Logo, Pokedex } from '../styles/Info'
+import { Buscador } from '../styles/Main';
 
 export const InfoPokemon = memo(({data}) => {
-  const tipo = data?.types[0].type.name; 
-
+  const [infoPokemon, setinfoPokemon] = useState(data)
+  
+  const tipo = infoPokemon?.types[0].type.name; 
+  const inputRef = useRef()
+  const buscarPokemon = async (e)=>{
+       if(inputRef.current.value != "" && e.key === 'Enter'){
+         try {
+            const url = `https://pokeapi.co/api/v2/pokemon/${inputRef.current.value}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+              return _handleError(response.status);
+            }
+            const result = await response.json();
+            setinfoPokemon(result)
+            inputRef.current.value = ""
+          
+         } catch (error) {
+           console.log(error)
+         }
+       }else return;
+  }
+  useEffect(() => {
+    setinfoPokemon(data)
+  }, [data])
+  
   return (
     <ContainerInfo>
-      {!data ? (
+      <Buscador
+        type="text"
+        ref={inputRef}
+        placeholder="Buscar Pokémon"
+        search={true}
+        onKeyDown={buscarPokemon}
+      />
+      {!infoPokemon ? (
         <>
-          <img src="https://houm.com/static/brandImage/houmLogo.svg" alt='logo gris houm'/>
-          <h1>Pokedex</h1>
+          <img
+            src="https://houm.com/static/brandImage/houmLogo.svg"
+            alt="logo gris houm"
+          />
+          <h1>Pokédex</h1>
           <br />
         </>
       ) : (
         <Pokedex type={tipo}>
-          <h1>{data.name}</h1>
+          <h1>{infoPokemon.name}</h1>
           <ImagenPokemon
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
-            alt={`imagen ${data.name}`}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${infoPokemon.id}.svg`}
+            alt={`imagen ${infoPokemon.name}`}
           />
           <div className="abilities">
-            {data.abilities.map((poke,i) => {
+            {infoPokemon.abilities.map((poke, i) => {
               return (
                 <React.Fragment key={i}>
                   <div className="group">
@@ -30,7 +65,10 @@ export const InfoPokemon = memo(({data}) => {
               );
             })}
           </div>
-          <Logo src="https://houm.com/static/brandImage/grayLogo.svg" alt="logo houm" />
+          <Logo
+            src="https://houm.com/static/brandImage/grayLogo.svg"
+            alt="logo houm"
+          />
         </Pokedex>
       )}
     </ContainerInfo>
