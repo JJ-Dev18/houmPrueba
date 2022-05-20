@@ -22,7 +22,7 @@ export const Card = styled.div`
   width: 300px;
   border: 1px solid rgba(0, 0, 0, 0.35);
   margin: 5px;
-  /* color: ${(props) => props.theme.secondary}; */
+  /* font-family : 'Pokemon Hollow'; */
   ${(props) => {
     switch (props.type) {
       case "rock":

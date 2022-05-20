@@ -1,14 +1,15 @@
 import styled from 'styled-components'  
 import poke from '../images/pokebola.png'
+import logoPokemon from "../images/logopokemon.png";
+
+
 export const MainContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* overflow-x:hidden; */
-  /* background: ${(props) => props.theme.text}; */
+  
   h1 {
     color: ${(props) => props.theme.text};
     text-align: center;
@@ -22,7 +23,7 @@ export const ContainerPokemons = styled.section`
   flex-wrap: wrap;
   justify-content: center;
 
-  /* flex-basis: 50%; */
+ 
 `;
 
 
@@ -31,7 +32,7 @@ export const ContentButtons = styled.div`
   width: 375px ;
   margin: 10px 0;
   justify-content: space-around;
-  /* align-items: center; */
+ 
  
 `;
 
@@ -111,7 +112,6 @@ export const Buscador = styled.input`
   font: inherit;
   color: ${(props) => props.theme.text};
   width: ${(props) => (props.search ? "260px" : "300px")};
-  /* border: 1px solid ${(props) => props.theme.border}; */
   height: 0.7em;
   border: none;
   margin: 0;
@@ -144,3 +144,12 @@ export const Buscador = styled.input`
 `;
 
 
+export const Footer = styled.footer`
+width:200px ;
+height : 200px;
+background: url(${logoPokemon}) center no-repeat;
+background-size : cover;
+position:absolute;
+bottom:0;
+left:0;
+`

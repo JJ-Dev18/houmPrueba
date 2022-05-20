@@ -1,34 +1,56 @@
-import React, { memo,useRef,useState,useEffect } from 'react'
-import { _handleError } from '../errors/errors';
-import { ContainerInfo, ImagenPokemon, Logo, Pokedex } from '../styles/Info'
-import { Buscador } from '../styles/Main';
+import React, { memo, useRef, useState, useEffect } from "react";
+import { _handleError } from "../errors/errors";
+import {
+  ContainerCharact,
+  ContainerInfo,
+  ContainerStats,
+  ImagenPokemon,
+  Logo,
+  LogoPokemon,
+  Pokedex,
+  Stat,
+} from "../styles/Info";
+import { Buscador } from "../styles/Main";
+import logoPokemon from "../images/logopokemon.png";
+import { capitalizarPrimeraLetra } from "../utils/strings";
+import { useNotification } from "../context/NotificacionProvider";
+export const InfoPokemon = memo(({ data }) => {
+  const [infoPokemon, setinfoPokemon] = useState(data);
+  const tipo = infoPokemon?.types[0].type.name;
+  const inputRef = useRef();
+  const dispatchNotificacion = useNotification();
 
-export const InfoPokemon = memo(({data}) => {
-  const [infoPokemon, setinfoPokemon] = useState(data)
+  const handleNewNotification = (error) => {
+    dispatchNotificacion({
+      type: "ERROR",
+      message: `${error}`,
+      title: "Successful Request",
+    });
+  };
   
-  const tipo = infoPokemon?.types[0].type.name; 
-  const inputRef = useRef()
-  const buscarPokemon = async (e)=>{
-       if(inputRef.current.value != "" && e.key === 'Enter'){
-         try {
-            const url = `https://pokeapi.co/api/v2/pokemon/${inputRef.current.value}`;
-            const response = await fetch(url);
-            if (!response.ok) {
-              return _handleError(response.status);
-            }
-            const result = await response.json();
-            setinfoPokemon(result)
-            inputRef.current.value = ""
-          
-         } catch (error) {
-           console.log(error)
-         }
-       }else return;
-  }
+  const buscarPokemon = async (e) => {
+    if (inputRef.current.value != "" && e.key === "Enter") {
+      try {
+        let name = inputRef.current.value.toLowerCase();
+        const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          return _handleError(response.status);
+        }
+        const result = await response.json();
+        setinfoPokemon(result);
+        inputRef.current.value = "";
+      } catch (error) {
+        handleNewNotification(error);
+      }
+    } else return;
+  };
+
+
   useEffect(() => {
-    setinfoPokemon(data)
-  }, [data])
-  
+    setinfoPokemon(data);
+  }, [data]);
+
   return (
     <ContainerInfo>
       <Buscador
@@ -49,28 +71,47 @@ export const InfoPokemon = memo(({data}) => {
         </>
       ) : (
         <Pokedex type={tipo}>
-          <h1>{infoPokemon.name}</h1>
+          <LogoPokemon src={logoPokemon} alt="logo pokemon" />
+
           <ImagenPokemon
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${infoPokemon.id}.svg`}
             alt={`imagen ${infoPokemon.name}`}
           />
-          <div className="abilities">
-            {infoPokemon.abilities.map((poke, i) => {
-              return (
-                <React.Fragment key={i}>
-                  <div className="group">
-                    <h2>{poke.ability.name}</h2>
-                  </div>
-                </React.Fragment>
-              );
-            })}
-          </div>
-          <Logo
+         
+            <h2>{infoPokemon.name}</h2>
+            <span>{tipo.toUpperCase()}</span>
+            <ContainerStats>
+              <ul>
+                {infoPokemon.stats.map((poke, i) => (
+                  <li key={i}>
+                    <strong>{capitalizarPrimeraLetra(poke.stat.name)}</strong>  :
+                       {poke.base_stat}
+                  </li>
+                ))}
+              </ul>
+            </ContainerStats>
+          
+
+          <ContainerCharact>
+            <Stat>
+              <h3>Experience</h3>
+              <p>{infoPokemon.base_experience}</p>
+            </Stat>
+            <Stat>
+              <h3>Height</h3>
+              <p>{infoPokemon.height}</p>
+            </Stat>
+            <Stat>
+              <h3>Weight</h3>
+              <p>{infoPokemon.weight}</p>
+            </Stat>
+          </ContainerCharact>
+          {/* <Logo
             src="https://houm.com/static/brandImage/grayLogo.svg"
             alt="logo houm"
-          />
+          /> */}
         </Pokedex>
       )}
     </ContainerInfo>
   );
-})
+});

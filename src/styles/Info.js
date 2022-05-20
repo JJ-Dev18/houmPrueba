@@ -1,20 +1,19 @@
 import styled , {css}from 'styled-components'
 import { Card } from './Card';
-//https://houm.com/static/brandImage/grayLogo.svg
+
 
  export const ContainerInfo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  margin-top: 15px;
-  /* flex-basis: 50%; */
-  height: 50%vh;
-`;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+   margin-top: 15px;
+   height: 50%vh;
+ `;
 
 export const Pokedex = styled(Card)`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   width: 350px;
@@ -31,6 +30,17 @@ export const Pokedex = styled(Card)`
   height: ${(props) => (props.home ? "200px" : "500px")};
   transition: 0.5s ease all;
   margin-top: 30px;
+   span{
+    background : ${props => props.theme.titulos};
+    color : white;
+    padding:10px ;
+    position: absolute;
+    border-radius: 10px;
+    text-align:center;
+    top:0;
+    margin-top: 10px;
+    right: 10px; ;
+  }
   @media (min-width: 1280px) {
     margin-top: 0;
   }
@@ -38,17 +48,60 @@ export const Pokedex = styled(Card)`
     animation: none;
     border: 1px solid rgba(0, 0, 0, 0.35);
   }
-  h1 {
+  h2 {
     color: ${(props) => props.theme.titulos};
     font-weight: bold;
+    font-family: 'Pokemon Solid';
   }
 `;
 
 export const ImagenPokemon = styled.img`
   width:50% ;
   height: 180px ;
+  z-index: 99;
 `;
 
+export const LogoPokemon = styled.img`
+position: absolute;
+top: 0;
+left:10px;
+width:100px;
+`
+export const ContainerStats = styled.div`
+ width: 100% !important;
+ float: left;
+ padding: 10px;
+ 
+ul{
+  list-style:  none;
+  text-align : left;
+
+}
+
+`
+export const ContainerCharact = styled.div`
+  width: 100%;
+  display: flex;
+  padding:10px ;
+  justify-content: space-between;
+  /* position:absolute;
+top:0; */
+  
+  /* border: 1px solid green; */
+  border-radius: 0 0 20px 20px;
+`;
+export const Stat = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  /* border-top: ${(props) => props.theme.button} 1px solid; */
+  border-bottom: ${(props) => props.theme.button} 1px solid;
+ 
+`;
 export const Logo = styled.img`
 position: absolute;
 bottom : 5px;

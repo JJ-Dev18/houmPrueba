@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-
+import pokemonSolid from '../fonts/PokemonSolid.ttf'
+import pokemonHollow from "../fonts/PokemonHollow.ttf";
 
 
 export const ligthTheme = {
@@ -25,8 +26,18 @@ export const darkTheme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
- 
+ @font-face {
+        font-family: 'Pokemon Solid';
+        src :url(${pokemonSolid}) ;
+    }
+
+    @font-face {
+        font-family: 'Pokemon Hollow';
+         src: url(${pokemonHollow}) ;
+    }
+
  body{
-   background-color : ${props => props.theme.background}
+   background-color : ${(props) => props.theme.background};
  }
-`
+ 
+`;

@@ -1,24 +1,20 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { _handleError, _throwSpecificError } from "./errors/errors";
 import "./App.css";
 import {
-  Buscador,
   Button,
-  ContainerPokemons,
-  ContentBuscador,
   ContentButtons,
+  Footer,
   MainContainer,
   Toogle,
 } from "./styles/Main";
-import { CardPokemon } from "./components/CardPokemon";
 import { InfoPokemon } from "./components/InfoPokemon";
-import Skeleton from "./components/Skeleton";
 import useModeContext from "./context/ModeContext";
-import { darkTheme, GlobalStyles, ligthTheme } from "./utils/modes";
+import { darkTheme, GlobalStyles, ligthTheme } from "./styles/theme";
 import { ThemeProvider } from "styled-components";
-import { darkMode, lightMode } from "./context/actions";
-import { SearchInput } from "./components/SearchInput";
+import { darkMode, hasHerror, lightMode } from "./context/actions";
 import { ScreenCards } from "./components/ScreenCards";
+import useErrorContext, { useNotification } from "./context/NotificacionProvider";
 
 const cantPokemones = 10;
 
@@ -29,21 +25,27 @@ const Main = () => {
   const [prevUrl, setPrevUrl] = useState();
   const [pokeDex, setPokeDex] = useState();
   const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${cantPokemones}`
+    `https://pokeapi.co/api/v2/pokemon`
   );
-  const [errorState, setErrorState] = useState({ hasError: false });
-  const { value } = useModeContext();
-  const { state, dispatch } = value;
- 
-  const handleError = useCallback((err) => setErrorState({ hasError: true, message: err.message }), []);
+
+   const dispatchNotificacion = useNotification();
+
+   const handleNewNotification = (error) => {
+        dispatchNotificacion({
+          type: "ERROR",
+          message: `${error}`,
+          title: "Successful Request",
+        });
+     };
+  
+  const { value: modeValue } = useModeContext();
+  const { state : modeState, dispatch } = modeValue;
 
   const toggleDarkmode = () => {
-    (state.darkMode) ? dispatch(lightMode()) : dispatch(darkMode());
+    (modeState.darkMode) ? dispatch(lightMode()) : dispatch(darkMode());
   };
   const infoPokemon = useCallback((poke) => setPokeDex(poke), []);
-
  
-
   const getPokemons = async () => {
     try {
       setLoading(true);
@@ -57,7 +59,8 @@ const Main = () => {
       getObjectPokemons(res.results);
       setLoading(false);
     } catch (error) {
-      handleError(error);
+      handleNewNotification(error);
+      
     }
   };
 
@@ -76,7 +79,7 @@ const Main = () => {
         });
       });
     } catch (error) {
-      handleError(error);
+      handleNewNotification(error);
     }
   };
 
@@ -86,7 +89,7 @@ const Main = () => {
   }, [url]);
 
   return (
-    <ThemeProvider theme={state.darkMode ? darkTheme : ligthTheme}>
+    <ThemeProvider theme={modeState.darkMode ? darkTheme : ligthTheme}>
       <GlobalStyles />
       <MainContainer>
         <InfoPokemon data={pokeDex} />
@@ -115,7 +118,7 @@ const Main = () => {
             </Button>
           )}
         </ContentButtons>
-        <Toogle onClick={toggleDarkmode} active={state.lightMode}>
+        <Toogle onClick={toggleDarkmode} active={modeState.lightMode}>
           <span>
             <i className="fas fa-sun"></i>
           </span>
@@ -123,7 +126,7 @@ const Main = () => {
             <i className="fas fa-moon"></i>
           </span>
         </Toogle>
-
+      
       </MainContainer>
     </ThemeProvider>
   );
