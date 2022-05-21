@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/JJ-Dev18/houmPrueba/static/css/main.cec2493d.css",
-    "main.js": "/JJ-Dev18/houmPrueba/static/js/main.d1dbf24a.js",
+    "main.js": "/JJ-Dev18/houmPrueba/static/js/main.e85cc393.js",
     "static/media/logopokemon.png": "/JJ-Dev18/houmPrueba/static/media/logopokemon.4a256f2f7ac8ae10b265.png",
     "static/media/pokebola.png": "/JJ-Dev18/houmPrueba/static/media/pokebola.a240f72792c585c2e036.png",
     "static/media/PokemonHollow.ttf": "/JJ-Dev18/houmPrueba/static/media/PokemonHollow.47f77ce9939c5330492b.ttf",
     "static/media/PokemonSolid.ttf": "/JJ-Dev18/houmPrueba/static/media/PokemonSolid.5d60be1f7ff5fcc21fc1.ttf",
     "index.html": "/JJ-Dev18/houmPrueba/index.html",
     "main.cec2493d.css.map": "/JJ-Dev18/houmPrueba/static/css/main.cec2493d.css.map",
-    "main.d1dbf24a.js.map": "/JJ-Dev18/houmPrueba/static/js/main.d1dbf24a.js.map"
+    "main.e85cc393.js.map": "/JJ-Dev18/houmPrueba/static/js/main.e85cc393.js.map"
   },
   "entrypoints": [
     "static/css/main.cec2493d.css",
-    "static/js/main.d1dbf24a.js"
+    "static/js/main.e85cc393.js"
   ]
 }
