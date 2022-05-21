@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState , useEffect,memo} from "react";
 import { Bar, NotificacionItem } from "../styles/Notificacion";
+import PropTypes from "prop-types";
+import useModeContext from "../context/ModeContext";
 
-const Notification = (props) => {
+const Notification = memo((props) => {
   const [exit, setExit] = useState(false);
   const [width, setWidth] = useState(0);
   const [intervalID, setIntervalID] = useState(null);
+  const { value: modeValue } = useModeContext();
+  const { state: modeState } = modeValue;
 
   const handleStartTimer = () => {
     const id = setInterval(() => {
@@ -36,14 +40,14 @@ const Notification = (props) => {
     }, 400);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (width === 100) {
-      // Close notification
+      // Cerrar Notificacion
       handleCloseNotification();
     }
   }, [width]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleStartTimer();
   }, []);
 
@@ -52,14 +56,20 @@ const Notification = (props) => {
       onMouseEnter={handlePauseTimer}
       onMouseLeave={handleStartTimer}
       exit={exit}
-      className={`
-        props.type === "SUCCESS" ? "success" : "error"
-      } ${exit ? "exit" : ""}`}
+      dark={modeState.darkMode}
     >
       <p>{props.message}</p>
       <Bar className={"bar"} style={{ width: `${width}%` }} />
     </NotificacionItem>
   );
-};
+});
 
 export default Notification;
+
+Notification.propTypes = { 
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  dispatch : PropTypes.func.isRequired,
+};

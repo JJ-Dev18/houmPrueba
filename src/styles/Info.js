@@ -7,7 +7,7 @@ import { Card } from './Card';
    justify-content: center;
    align-items: center;
    padding: 20px;
-   margin-top: 15px;
+   margin-top: 30px;
    height: 50%vh;
  `;
 
@@ -40,6 +40,7 @@ export const Pokedex = styled(Card)`
     top:0;
     margin-top: 10px;
     right: 10px; ;
+    font-size : .8rem;
   }
   @media (min-width: 1280px) {
     margin-top: 0;

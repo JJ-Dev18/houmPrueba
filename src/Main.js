@@ -28,6 +28,8 @@ const Main = () => {
     `https://pokeapi.co/api/v2/pokemon`
   );
 
+  console.log('main renderizado')
+
    const dispatchNotificacion = useNotification();
 
    const handleNewNotification = (error) => {

@@ -1,22 +1,23 @@
 import styled ,{keyframes}from 'styled-components'
 
-const SlideLeft = keyframes`
+const SlideTop = keyframes`
    0% {
-        margin-left: 80%;
+        margin-top: 100px;
     }
 
     100% {
-        margin-left: 0;
+        margin-top: 0;
     }
 `;
 
-const SlideRight = keyframes`
+const SlideBottom = keyframes`
     0% {
-        margin-left: 0;
+        margin-top: 0;
     }
 
+
     100% {
-        margin-left: 80%;
+        margin-top: 100px;
     }
 `;
 
@@ -25,25 +26,27 @@ export const NotificacionItem = styled.div`
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
-  animation: ${(props) => (props.exit ? SlideLeft : SlideRight)} 4s ;
+  animation: ${(props) => (props.exit ? SlideTop : SlideBottom)} 4s;
   animation-fill-mode: forwards;
   width: 300px;
   padding: 10px;
   border: 1px solid #ff452b;
-  z-index: 9999;
-
+  color: ${(props) => (props.dark ? "white" : "black")};
+  background-color: ${(props) => (props.dark ?  "#0d1117" : 'white')};
 `;
 
 export const WrapperNotificacion = styled.div`
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 0;
+  left: 70px;
   width: 300px;
-`;
+  z-index:999;
 
+`;
 
 
 export const Bar = styled.div`
   height: 10px;
   background-color: #ff452b;
+
 `;

@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { Buscador, ContainerPokemons } from '../styles/Main';
 import { CardPokemon } from './CardPokemon';
 import Skeleton from './Skeleton';
+import PropTypes from "prop-types";
 
 export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
  
@@ -47,3 +48,10 @@ export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
     </>
   );
 }
+
+ScreenCards.propTypes = {
+  data: PropTypes.array.isRequired,
+  loading : PropTypes.bool.isRequired,
+  cantPokemones : PropTypes.number.isRequired,
+  infoPokemon : PropTypes.func.isRequired,
+};

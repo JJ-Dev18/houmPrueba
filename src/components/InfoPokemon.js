@@ -5,16 +5,19 @@ import {
   ContainerInfo,
   ContainerStats,
   ImagenPokemon,
-  Logo,
   LogoPokemon,
   Pokedex,
   Stat,
 } from "../styles/Info";
 import { Buscador } from "../styles/Main";
-import logoPokemon from "../images/logopokemon.png";
+import LogoPokemons from "./../images/logopokemon.png";
 import { capitalizarPrimeraLetra } from "../utils/strings";
 import { useNotification } from "../context/NotificacionProvider";
+import PropTypes from "prop-types";
+
 export const InfoPokemon = memo(({ data }) => {
+  
+
   const [infoPokemon, setinfoPokemon] = useState(data);
   const tipo = infoPokemon?.types[0].type.name;
   const inputRef = useRef();
@@ -71,7 +74,7 @@ export const InfoPokemon = memo(({ data }) => {
         </>
       ) : (
         <Pokedex type={tipo}>
-          <LogoPokemon src={logoPokemon} alt="logo pokemon" />
+          <LogoPokemon src={LogoPokemons} alt="logo pokemon" />
 
           <ImagenPokemon
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${infoPokemon.id}.svg`}
@@ -115,3 +118,15 @@ export const InfoPokemon = memo(({ data }) => {
     </ContainerInfo>
   );
 });
+
+InfoPokemon.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    types: PropTypes.array.isRequired,
+    height: PropTypes.number.isRequired,
+    weight: PropTypes.number.isRequired,
+    base_experience :  PropTypes.number.isRequired,
+    stats : PropTypes.array.isRequired,
+  }),
+};
