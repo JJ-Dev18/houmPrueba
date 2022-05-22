@@ -2,6 +2,9 @@ import React from "react";
 import ContentLoader from "react-content-loader";
 import PropTypes from 'prop-types'
 
+/**
+  Este componente sirve para crear el skeleton de cada card 
+ */
 
  const SkeletonCard =( props) => {
   return (
@@ -19,9 +22,11 @@ import PropTypes from 'prop-types'
   );
 }
 
+/**
+  Este componente sirve para crear el numero de skleleton segun el numero de pokemones 
+ */
 const Skeleton = ({numPokemones = 12})=>{
-   console.log("render skeleton");
-  
+   
    const list = []
 
   for(let i = 0; i < numPokemones; i++){

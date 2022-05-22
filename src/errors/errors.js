@@ -1,5 +1,7 @@
 
-
+/**
+  Este archivo maneja los mensajes de errores personalizados para la aplicacion
+ */
 
 export const _handleError = (status) => {
   if (status === 404) {
@@ -26,7 +28,7 @@ export class NetworkError extends Error {
 
 export class NotFoundError extends Error {
   constructor() {
-    super("El recurso requerido no se encuentra.");
+    super("El Pokemon buscado no se encuentra.");
   }
 }
 

@@ -3,6 +3,9 @@ import { v4 } from "uuid";
 import Notification from "../components/Notification";
 import { WrapperNotificacion } from "../styles/Notificacion";
 
+/**
+  Este archivo crea el context de la alerta o notificacion , como tambien el componente que maneja la notificacion
+ */
 
 const NotificationContext = createContext();
 
@@ -37,7 +40,7 @@ export const useNotification = () => {
     dispatch({
       type: "ADD_NOTIFICATION",
       payload: {
-        id: 1,
+        id: v4(),
         ...props,
       },
     });

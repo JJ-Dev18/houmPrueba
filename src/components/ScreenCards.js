@@ -4,6 +4,10 @@ import { CardPokemon } from './CardPokemon';
 import Skeleton from './Skeleton';
 import PropTypes from "prop-types";
 
+/**
+  Este componente maneja la vista de las cards  
+ */
+
 export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
  
   const [pokemons, setpokemons] = useState(data)

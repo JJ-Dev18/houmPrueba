@@ -3,6 +3,9 @@ import { Bar, NotificacionItem } from "../styles/Notificacion";
 import PropTypes from "prop-types";
 import useModeContext from "../context/ModeContext";
 
+/**
+  Este componente sirve para cargar la Notificacion  
+ */
 const Notification = memo((props) => {
   const [exit, setExit] = useState(false);
   const [width, setWidth] = useState(0);
@@ -67,7 +70,7 @@ const Notification = memo((props) => {
 export default Notification;
 
 Notification.propTypes = { 
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

@@ -1,6 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
 
-
+/**
+  Este archivo crea el context del modo, como sus distintas acciones en el reducer 
+ */
 export const ModeContext = createContext(null);
 
 const initialState = JSON.parse(localStorage.getItem("mode")) || {
@@ -51,7 +53,7 @@ export const ModeProvider = ({ children }) => {
   );
 };
 
-export function useModeContext() {
+export const useModeContext = () =>  {
   const context = useContext(ModeContext);
 
   if (!context) {

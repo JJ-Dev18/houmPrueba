@@ -15,6 +15,9 @@ import { capitalizarPrimeraLetra } from "../utils/strings";
 import { useNotification } from "../context/NotificacionProvider";
 import PropTypes from "prop-types";
 
+/**
+  Este componente sirve para mostrar la informacion generla del pokemon seleccionado o buscado
+ */
 export const InfoPokemon = memo(({ data }) => {
   
 

@@ -28,31 +28,32 @@ export const Pokedex = styled(Card)`
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   position: relative;
   height: ${(props) => (props.home ? "200px" : "500px")};
-  transition: 0.5s ease all;
+  /* transition: 0.5s ease all; */
   margin-top: 30px;
-   span{
-    background : ${props => props.theme.titulos};
-    color : white;
-    padding:10px ;
+  span {
+    background: ${(props) => props.theme.titulos};
+    color: white;
+    padding: 10px;
     position: absolute;
     border-radius: 10px;
-    text-align:center;
-    top:0;
+    text-align: center;
+    top: 0;
     margin-top: 10px;
-    right: 10px; ;
-    font-size : .8rem;
+    right: 10px;
+    font-size: 0.8rem;
   }
   @media (min-width: 1280px) {
     margin-top: 0;
   }
   &:hover {
     animation: none;
-    border: 1px solid rgba(0, 0, 0, 0.35);
+    border: 2px solid ${(props) => props.theme.button};
+   
   }
   h2 {
     color: ${(props) => props.theme.titulos};
     font-weight: bold;
-    font-family: 'Pokemon Solid';
+    font-family: "Pokemon Solid";
   }
 `;
 

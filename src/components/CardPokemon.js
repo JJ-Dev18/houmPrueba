@@ -2,6 +2,9 @@ import React, { memo, useState } from "react";
 import { Card } from "../styles/Card";
 import PropTypes from "prop-types";
 
+/**
+  Este componente sirve para mostrar la card en la lista de pokemones 
+ */
 export const CardPokemon = memo((props) => {
   const { name,sprites,id,types,infoPokemon } = props
   const tipo = types[0].type.name; 
