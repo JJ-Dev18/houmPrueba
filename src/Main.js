@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { _handleError, _throwSpecificError } from "./errors/errors";
 import "./App.css";
 import {
-  Button,
-  ContentButtons,
-  Footer,
   MainContainer,
   Toogle,
 } from "./styles/Main";
@@ -12,13 +8,12 @@ import { InfoPokemon } from "./components/InfoPokemon";
 import useModeContext from "./context/ModeContext";
 import { darkTheme, GlobalStyles, ligthTheme } from "./styles/theme";
 import { ThemeProvider } from "styled-components";
-import { darkMode, hasHerror, lightMode } from "./context/actions";
+import { darkMode,lightMode } from "./context/actions";
 import { ScreenCards } from "./components/ScreenCards";
 import {
   useNotification,
 } from "./context/NotificacionProvider";
 import { Pagination } from "./components/Pagination";
-import { useCounter } from "./hooks/useCounter";
 import { getPokemonData, getPokemons } from "./api/api";
 
 
@@ -27,18 +22,17 @@ import { getPokemonData, getPokemons } from "./api/api";
  */
 
 
-// const cantPokemones = 10
 const Main = () => {
+
   const [pokemons, setpokemons] = useState([]);
   const [cantPokemones, setCantPokemones] = useState(10)
   const [loading, setLoading] = useState(true);
   const [page, setpage] = useState(0);
   const [pokeDex, setPokeDex] = useState();
-  // const [url, setUrl] = useState(
-  //   `https://pokeapi.co/api/v2/pokemon?offset=0&limit=`
-  // );
+  
   const total = useRef()
   const dispatchNotificacion = useNotification();
+  console.log(page);
   const handleNewNotification = (error) => {
     dispatchNotificacion({
       type: "ERROR",
@@ -90,32 +84,14 @@ const Main = () => {
           cantPokemones={cantPokemones}
           infoPokemon={infoPokemon}
         />
-        {/* {errorState.hasError && <div>{errorState.message}</div>} */}
-        <ContentButtons className="btn-group">
-          {page > 0 && (
-            <Button
-              onClick={() => {
-                setpage(page - 1);
-              }}
-            >
-              Anterior
-            </Button>
-          )}
-
-          <Button
-            onClick={() => {
-              setpage(page + 1);
-            }}
-          >
-            Siguiente
-          </Button>
-        </ContentButtons>
+        
         <Pagination
-          inicio={cantPokemones}
-          final={(cantPokemones * page ) + (cantPokemones)}
+          inicio={cantPokemones * page}
+          final={cantPokemones * page + cantPokemones}
           total={total.current}
           setCantPokemones={setCantPokemones}
-          page={page + 1}
+          setpage={setpage}
+          page={page }
         />
         <Toogle onClick={toggleDarkmode} active={modeState.lightMode}>
           <span>

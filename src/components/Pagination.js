@@ -1,46 +1,57 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, {memo} from 'react'
+import { ContentButtons, Button, ContainerPagination } from '../styles/Pagination'
 
-const ContainerPagination = styled.div ` 
-display : flex;
-justify-content :space-around;
 
-`
-
-export const Pagination = ({inicio,final,total,setCantPokemones,page}) => {
+/**
+  Este componente sirve para cargar y manejar la paginacion  
+ */
+export const Pagination = memo(({inicio,final,total,setCantPokemones,page,setpage}) => {
+  
   
   const onSelected = (e) => {
-    // setCantPokemones(e.target.value)
     let cantidad = parseInt(e.target.value);
     setCantPokemones(cantidad);
-    // setUrl(url + cantidad)
   };
   
   return (
-    <ContainerPagination>
-      <label>Pokemones por pagina</label>
-      <p>page: {page}</p>
-      <select onChange={onSelected}>
-        <option value={10}>
-          10
-        </option>
-        <option value={20} >
-          20
-        </option>
-        <option value={30}>
-          30
-        </option>
-        <option value={40} >
-          40
-        </option>
-        <option value={50}>
-          50
-        </option>
-      </select>
+    <>
+      <ContentButtons className="btn-group">
+        {page > 0 && (
+          <Button
+            onClick={() => {
+              setpage(page - 1);
+            }}
+          >
+            Anterior
+          </Button>
+        )}
+       
+        <Button
+          onClick={() => {
+            setpage(page + 1);
+          }}
+        >
+          Siguiente
+        </Button>
+      </ContentButtons>
+      <ContainerPagination>
+        <label htmlFor="cantPokemones">Pokemones por pagina</label>
+        <select onChange={onSelected} id="cantPokemones">
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={30}>30</option>
+          <option value={40}>40</option>
+          <option value={50}>50</option>
+        </select>
 
-      <span>{inicio} - {final} de {total}</span>
-    </ContainerPagination>
+        <span>
+          {inicio + 1} - {final} de {total}
+        </span>
+        <br />
+        {/* <p>page: {page + 1 }</p> */}
+      </ContainerPagination>
+    </>
   );
-}
+})
 
 

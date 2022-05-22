@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
  */
 
 export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
-  console.log("render")
+  
   const [pokemons, setpokemons] = useState(data)
 
    const handleFilter = (e) => {
