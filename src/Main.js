@@ -37,7 +37,7 @@ const Main = () => {
   // const [url, setUrl] = useState(
   //   `https://pokeapi.co/api/v2/pokemon?offset=0&limit=`
   // );
-
+  const total = useRef()
   const dispatchNotificacion = useNotification();
   const handleNewNotification = (error) => {
     dispatchNotificacion({
@@ -59,7 +59,8 @@ const Main = () => {
     try {
       setLoading(true);
       const res = await getPokemons(cantPokemones, cantPokemones * page);
-    
+      
+      total.current =res.count;
       const promises = res.results.map(async (pokemon) => {
         return await getPokemonData(pokemon.url);
       });
@@ -94,24 +95,28 @@ const Main = () => {
           {page > 0 && (
             <Button
               onClick={() => {
-                setpage(page-1)
+                setpage(page - 1);
               }}
             >
               Anterior
             </Button>
           )}
 
-       
-            <Button
-              onClick={() => {
-               setpage(page + 1);
-              }}
-            >
-              Siguiente
-            </Button>
-          
+          <Button
+            onClick={() => {
+              setpage(page + 1);
+            }}
+          >
+            Siguiente
+          </Button>
         </ContentButtons>
-        <Pagination inicio={cantPokemones} final={123} total={1224} setCantPokemones={setCantPokemones} page={page+ 1}/>
+        <Pagination
+          inicio={cantPokemones}
+          final={(cantPokemones * page ) + (cantPokemones)}
+          total={total.current}
+          setCantPokemones={setCantPokemones}
+          page={page + 1}
+        />
         <Toogle onClick={toggleDarkmode} active={modeState.lightMode}>
           <span>
             <i className="fas fa-sun"></i>

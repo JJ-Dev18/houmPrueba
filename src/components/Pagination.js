@@ -11,7 +11,7 @@ export const Pagination = ({inicio,final,total,setCantPokemones,page}) => {
   
   const onSelected = (e) => {
     // setCantPokemones(e.target.value)
-    let cantidad = (e.target.value);
+    let cantidad = parseInt(e.target.value);
     setCantPokemones(cantidad);
     // setUrl(url + cantidad)
   };
@@ -19,7 +19,7 @@ export const Pagination = ({inicio,final,total,setCantPokemones,page}) => {
   return (
     <ContainerPagination>
       <label>Pokemones por pagina</label>
-      <p>page { page} </p>
+      <p>page: {page}</p>
       <select onChange={onSelected}>
         <option value={10}>
           10
