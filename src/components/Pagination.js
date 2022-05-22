@@ -7,12 +7,19 @@ justify-content :space-around;
 
 `
 
-export const Pagination = ({inicio,final,total,onSelected}) => {
-  console.log(inicio,final,total)
+export const Pagination = ({inicio,final,total,setCantPokemones,page}) => {
+  
+  const onSelected = (e) => {
+    // setCantPokemones(e.target.value)
+    let cantidad = (e.target.value);
+    setCantPokemones(cantidad);
+    // setUrl(url + cantidad)
+  };
   
   return (
     <ContainerPagination>
       <label>Pokemones por pagina</label>
+      <p>page { page} </p>
       <select onChange={onSelected}>
         <option value={10}>
           10

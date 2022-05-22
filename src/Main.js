@@ -14,97 +14,66 @@ import { darkTheme, GlobalStyles, ligthTheme } from "./styles/theme";
 import { ThemeProvider } from "styled-components";
 import { darkMode, hasHerror, lightMode } from "./context/actions";
 import { ScreenCards } from "./components/ScreenCards";
-import useErrorContext, {
+import {
   useNotification,
 } from "./context/NotificacionProvider";
 import { Pagination } from "./components/Pagination";
 import { useCounter } from "./hooks/useCounter";
-import { parse } from "uuid";
+import { getPokemonData, getPokemons } from "./api/api";
+
 
 /**
   Componente Main 
  */
 
 
-
+// const cantPokemones = 10
 const Main = () => {
   const [pokemons, setpokemons] = useState([]);
   const [cantPokemones, setCantPokemones] = useState(10)
   const [loading, setLoading] = useState(true);
-  const [nextUrl, setNextUrl] = useState();
-  const [prevUrl, setPrevUrl] = useState();
+  const [page, setpage] = useState(0);
   const [pokeDex, setPokeDex] = useState();
-  const [url, setUrl] = useState(
-    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=`
-  );
-  console.log(url)
-  const { counter, increment, decrement, reset } = useCounter(10);
-  const total = useRef();
-  const dispatchNotificacion = useNotification();
+  // const [url, setUrl] = useState(
+  //   `https://pokeapi.co/api/v2/pokemon?offset=0&limit=`
+  // );
 
+  const dispatchNotificacion = useNotification();
   const handleNewNotification = (error) => {
     dispatchNotificacion({
       type: "ERROR",
       message: `${error}`,
-      title: "Successful Request",
+      title: "Error Request",
     });
   };
-
   const { value: modeValue } = useModeContext();
   const { state: modeState, dispatch } = modeValue;
-
+  
   const toggleDarkmode = () => {
     modeState.darkMode ? dispatch(lightMode()) : dispatch(darkMode());
   };
-  const onSelected = (e)=> {
-    // setCantPokemones(e.target.value)
-    let cantidad = parseInt(e.target.value)
-    setCantPokemones(cantidad)
-    setUrl(url + cantidad)
-  }
+  
   const infoPokemon = useCallback((poke) => setPokeDex(poke), []);
 
-  const getPokemons = async (cantidad) => {
-    
+  const getPokemones = async () => {
     try {
       setLoading(true);
-      const response = await fetch(url );
-      if (!response.ok) {
-        return _handleError(response.status);
-      }
-      const res = await response.json();
-
-      setNextUrl(res.next);
-      setPrevUrl(res.previous);
-      getObjectPokemons(res.results);
-      total.current = res.count;
+      const res = await getPokemons(cantPokemones, cantPokemones * page);
+    
+      const promises = res.results.map(async (pokemon) => {
+        return await getPokemonData(pokemon.url);
+      });
+      const results = await Promise.all(promises);
+      setpokemons(results)
       setLoading(false);
     } catch (error) {
       handleNewNotification(error);
     }
   };
 
-  const getObjectPokemons = (res) => {
-    try {
-      res.map(async (pokemon) => {
-        const response = await fetch(pokemon.url);
-        if (!response.ok) {
-          return _handleError(response.status);
-        }
-        const result = await response.json();
-        setpokemons((state) => {
-          state = [...state, result];
-          state.sort((a, b) => (a.id > b.id ? 1 : -1));
-          return state;
-        });
-      });
-    } catch (error) {
-      handleNewNotification(error);
-    }
-  };
   useEffect(() => {
-    getPokemons();
-  }, [cantPokemones]);
+    getPokemones();
+  }, [cantPokemones,page]);
 
   
 
@@ -122,29 +91,27 @@ const Main = () => {
         />
         {/* {errorState.hasError && <div>{errorState.message}</div>} */}
         <ContentButtons className="btn-group">
-          {prevUrl && (
+          {page > 0 && (
             <Button
               onClick={() => {
-                setpokemons([]);
-                setUrl(prevUrl);
+                setpage(page-1)
               }}
             >
               Anterior
             </Button>
           )}
 
-          {nextUrl && (
+       
             <Button
               onClick={() => {
-                setpokemons([]);
-                setUrl(nextUrl);
+               setpage(page + 1);
               }}
             >
               Siguiente
             </Button>
-          )}
+          
         </ContentButtons>
-        <Pagination inicio={cantPokemones} final={123} total={total.current} onSelected={onSelected}/>
+        <Pagination inicio={cantPokemones} final={123} total={1224} setCantPokemones={setCantPokemones} page={page+ 1}/>
         <Toogle onClick={toggleDarkmode} active={modeState.lightMode}>
           <span>
             <i className="fas fa-sun"></i>
