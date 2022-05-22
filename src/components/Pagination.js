@@ -1,10 +1,12 @@
 import React, {memo} from 'react'
 import { ContentButtons, Button, ContainerPagination } from '../styles/Pagination'
+import PropTypes from "prop-types";
 
 
 /**
   Este componente sirve para cargar y manejar la paginacion  
  */
+
 export const Pagination = memo(({inicio,final,total,setCantPokemones,page,setpage}) => {
   
   
@@ -55,3 +57,11 @@ export const Pagination = memo(({inicio,final,total,setCantPokemones,page,setpag
 })
 
 
+Pagination.propTypes = {
+  inicio : PropTypes.number.isRequired,
+  final : PropTypes.number.isRequired,
+  total : PropTypes.number,
+  setCantPokemones : PropTypes.func.isRequired,
+  page : PropTypes.number.isRequired,
+  setpage : PropTypes.func.isRequired,
+};

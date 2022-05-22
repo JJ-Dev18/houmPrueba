@@ -32,7 +32,7 @@ export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
     <>
       <h1>Pokémones</h1>
 
-      <Buscador onChange={handleFilter} placeholder="Filtrar Pokémon" />
+      <Buscador onChange={handleFilter} placeholder="Filtrar lista por pagina (nombre) " />
 
       <ContainerPokemons>
         {loading ? (

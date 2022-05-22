@@ -67,7 +67,10 @@ export const Card = styled.div`
         `;
     }
   }}
-
+  img{
+    width: 176px
+    height:176px ;
+  }
   &:hover {
     animation: ${bounce} 0.5s;
     border: 1px solid ${(props) => props.theme.secondary};

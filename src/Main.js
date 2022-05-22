@@ -29,10 +29,12 @@ const Main = () => {
   const [loading, setLoading] = useState(true);
   const [page, setpage] = useState(0);
   const [pokeDex, setPokeDex] = useState();
-  
-  const total = useRef()
+  const { value: modeValue } = useModeContext();
+  const { state: modeState, dispatch } = modeValue;
   const dispatchNotificacion = useNotification();
-  console.log(page);
+  const total = useRef()
+  
+  
   const handleNewNotification = (error) => {
     dispatchNotificacion({
       type: "ERROR",
@@ -40,8 +42,6 @@ const Main = () => {
       title: "Error Request",
     });
   };
-  const { value: modeValue } = useModeContext();
-  const { state: modeState, dispatch } = modeValue;
   
   const toggleDarkmode = () => {
     modeState.darkMode ? dispatch(lightMode()) : dispatch(darkMode());
