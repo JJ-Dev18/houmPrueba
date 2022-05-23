@@ -111,3 +111,10 @@ bottom : 5px;
 right: 5px;
 width : 100px;
 `
+export const ContainerSkeleton = styled.div`
+  margin-top: 30px;
+
+  @media (min-width: 1280px) {
+    margin-top: 0;
+  }
+`;

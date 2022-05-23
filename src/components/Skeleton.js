@@ -1,6 +1,7 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 import PropTypes from 'prop-types'
+import { ContainerSkeleton } from "../styles/Info";
 
 /**
   Este componente sirve para crear el skeleton de cada card 
@@ -23,6 +24,7 @@ import PropTypes from 'prop-types'
 }
 
 export const SkeletonInfo = (props) => (
+  
   <ContentLoader
     speed={2}
     width={350}
@@ -32,8 +34,9 @@ export const SkeletonInfo = (props) => (
     foregroundColor="#ecebeb"
     {...props}
   >
-    <rect x="0" y="22" rx="30" ry="30" width="350" height="480" />
+    <rect x="0" y="0" rx="20" ry="20" width="350" height="500" />
   </ContentLoader>
+
 );
 /**
   Este componente sirve para crear el numero de skleleton segun el numero de pokemones 

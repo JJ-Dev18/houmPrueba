@@ -4,6 +4,7 @@ import {
   ContainerCharact,
   ContainerInfo,
   ContainerStats,
+  ContainerSkeleton,
   ImagenPokemon,
   LogoPokemon,
   Pokedex,
@@ -83,8 +84,7 @@ export const InfoPokemon = memo(({ data }) => {
           <h1>Pokédex</h1>
           <br />
         </>
-      ) : (
-        !error ?
+      ) : !error ? (
         <Pokedex type={tipo}>
           <LogoPokemon src={LogoPokemons} alt="logo pokemon" />
 
@@ -117,12 +117,11 @@ export const InfoPokemon = memo(({ data }) => {
               <p>{infoPokemon.weight}</p>
             </Stat>
           </ContainerCharact>
-          {/* <Logo
-            src="https://houm.com/static/brandImage/grayLogo.svg"
-            alt="logo houm"
-          /> */}
         </Pokedex>
-        : <SkeletonInfo/>
+      ) : (
+        <ContainerSkeleton>
+          <SkeletonInfo />
+        </ContainerSkeleton>
       )}
     </ContainerInfo>
   );
