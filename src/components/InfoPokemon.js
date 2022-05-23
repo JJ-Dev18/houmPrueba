@@ -69,7 +69,7 @@ export const InfoPokemon = memo(({ data }) => {
         disabled={error}
         type="text"
         ref={inputRef}
-        placeholder="Buscar Pokémon"
+        placeholder="Search Pokémon"
         search={true}
         onKeyDown={buscarPokemon}
       />

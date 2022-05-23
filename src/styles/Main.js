@@ -26,7 +26,20 @@ export const ContainerPokemons = styled.section`
  
 `;
 
+export const SelectTarget = styled.select`
+  position: absolute;
+  padding: 5px ;
+  right: 10px;
+  top: 15px;
+  width:70px ;
+  border : none;
+  background : ${props => props.theme.background};
+  color : ${ props => props.theme.text}
+`;
 
+export const ContentFiltro = styled.div` 
+position: relative;
+`
 
 
 export const Toogle = styled.button`

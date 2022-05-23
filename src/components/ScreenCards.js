@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Buscador, ContainerPokemons } from '../styles/Main';
+import { Buscador, ContainerPokemons, ContentFiltro, SelectTarget } from '../styles/Main';
 import { CardPokemon } from './CardPokemon';
 import Skeleton from './Skeleton';
 import PropTypes from "prop-types";
@@ -11,14 +11,22 @@ import PropTypes from "prop-types";
 export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
   
   const [pokemons, setpokemons] = useState(data)
+  const [target , settarget] = useState('name')
+  console.log(data)
  //Funcion para filtrar las cards de pokemones que se estan mostrando por pagina 
    const handleFilter = (e) => {
      let name = e.target.value;
       if (name !== " ") {
        name = name.toLowerCase();
-       setpokemons(
-         data.filter((poke) => poke.name.toLowerCase().includes(name))
-       );
+      target == "name"
+        ? setpokemons(
+            data.filter((poke) => poke.name.toLowerCase().includes(name))
+          )
+        : setpokemons(
+            data.filter((poke) =>
+              poke.types[0].type.name.toLowerCase().includes(name)
+            )
+          );
      } else {
        setpokemons(data);
      }
@@ -31,9 +39,17 @@ export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
   return (
     <>
       <h1>Pokémones</h1>
+      <ContentFiltro>
+      <Buscador
+        onChange={handleFilter}
+        placeholder="Filter list by page"
+      />
+      <SelectTarget id="cantPokemones" onChange={(e)=>settarget(e.target.value)}>
+        <option value="name">Name</option>
+        <option value="type">Type</option>
+      </SelectTarget>
 
-      <Buscador onChange={handleFilter} placeholder="Filtrar lista por pagina (nombre) " />
-
+      </ContentFiltro>
       <ContainerPokemons>
         {loading ? (
           <>
