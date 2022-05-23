@@ -68,27 +68,28 @@ position: absolute;
 top: 0;
 left:10px;
 width:100px;
+/* height:100px ; */
+
 `
 export const ContainerStats = styled.div`
- width: 100% !important;
- float: left;
- padding: 10px;
- 
-ul{
-  list-style:  none;
-  text-align : left;
+  width: 100% !important;
+  float: left;
+  padding: 10px;
 
-}
-
-`
+  ul {
+    list-style: none;
+    text-align: left;
+  }
+`;
 export const ContainerCharact = styled.div`
   width: 100%;
   display: flex;
-  padding:10px ;
+  padding: 10px;
   justify-content: space-between;
+
   /* position:absolute;
 top:0; */
-  
+
   /* border: 1px solid green; */
   border-radius: 0 0 20px 20px;
 `;

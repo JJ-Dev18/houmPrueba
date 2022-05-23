@@ -10,5 +10,5 @@ Frontend Challenge Houm
 - react-content-loader
 
 ## Api usada
- # [Poke Api] (https://pokeapi.co/) 
+ -[Poke Api] (https://pokeapi.co/) 
 

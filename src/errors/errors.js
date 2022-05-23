@@ -32,7 +32,7 @@ export class NetworkError extends Error {
 
 export class NotFoundError extends Error {
   constructor() {
-    super("El Pokemon buscado no se encuentra.");
+    super("The searched pokemon could not be found");
   }
 }
 

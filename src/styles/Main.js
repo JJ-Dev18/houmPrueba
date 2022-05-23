@@ -1,6 +1,6 @@
 import styled from 'styled-components'  
-import poke from '../images/pokebola.png'
-import logoPokemon from "../images/logopokemon.png";
+import poke from '../images/pokebola.webp'
+import logoPokemon from "../images/logopokemon.webp";
 
 
 export const MainContainer = styled.div`
@@ -123,13 +123,3 @@ export const Buscador = styled.input`
   }
 `;
 
-
-export const Footer = styled.footer`
-width:200px ;
-height : 200px;
-background: url(${logoPokemon}) center no-repeat;
-background-size : cover;
-position:absolute;
-bottom:0;
-left:0;
-`

@@ -10,7 +10,7 @@ import {
   Stat,
 } from "../styles/Info";
 import { Buscador } from "../styles/Main";
-import LogoPokemons from "./../images/logopokemon.png";
+import LogoPokemons from "./../images/logopokemon.webp";
 import { capitalizarPrimeraLetra } from "../utils/strings";
 import { useNotification } from "../context/NotificacionProvider";
 import PropTypes from "prop-types";
@@ -72,6 +72,7 @@ export const InfoPokemon = memo(({ data }) => {
         placeholder="Search Pokémon"
         search={true}
         onKeyDown={buscarPokemon}
+       
       />
       {!infoPokemon ? (
         <>

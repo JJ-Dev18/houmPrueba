@@ -92,16 +92,20 @@ const Main = () => {
           cantPokemones={cantPokemones}
           infoPokemon={infoPokemon}
         />
-        
+
         <Pagination
           inicio={cantPokemones * page}
           final={cantPokemones * page + cantPokemones}
           total={total.current}
           setCantPokemones={setCantPokemones}
           setpage={setpage}
-          page={page }
+          page={page}
         />
-        <Toogle onClick={toggleDarkmode} active={modeState.lightMode}>
+        <Toogle
+          onClick={toggleDarkmode}
+          active={modeState.lightMode}
+          aria-label="change mode"
+        >
           <span>
             <i className="fas fa-sun"></i>
           </span>

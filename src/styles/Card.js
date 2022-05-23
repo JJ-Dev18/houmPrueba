@@ -15,6 +15,7 @@ export const Card = styled.div`
   display: flex;
   padding: 15px 10px 15px 15px;
   border-radius: 20px;
+  justify-content : space-between;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px; */
@@ -67,13 +68,14 @@ export const Card = styled.div`
         `;
     }
   }}
-  img{
-    width: 176px
-    height:176px ;
-  }
+
   &:hover {
     animation: ${bounce} 0.5s;
     border: 1px solid ${(props) => props.theme.secondary};
   }
 `;
 
+export const ImagenPokemon = styled.img` 
+width : 100px;
+height : 100px;
+`

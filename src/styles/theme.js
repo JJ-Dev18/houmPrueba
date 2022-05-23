@@ -31,10 +31,6 @@ export const GlobalStyles = createGlobalStyle`
         src :url(${pokemonSolid}) ;
     }
 
-    @font-face {
-        font-family: 'Pokemon Hollow';
-         src: url(${pokemonHollow}) ;
-    }
 
     select{
       width:40px ;

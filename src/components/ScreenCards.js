@@ -12,7 +12,7 @@ export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
   
   const [pokemons, setpokemons] = useState(data)
   const [target , settarget] = useState('name')
-  console.log(data)
+
  //Funcion para filtrar las cards de pokemones que se estan mostrando por pagina 
    const handleFilter = (e) => {
      let name = e.target.value;
@@ -43,8 +43,9 @@ export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
       <Buscador
         onChange={handleFilter}
         placeholder="Filter list by page"
+       
       />
-      <SelectTarget id="cantPokemones" onChange={(e)=>settarget(e.target.value)}>
+      <SelectTarget id="target" onChange={(e)=>settarget(e.target.value)}>
         <option value="name">Name</option>
         <option value="type">Type</option>
       </SelectTarget>
