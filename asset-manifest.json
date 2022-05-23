@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/houmPrueba/static/css/main.cec2493d.css",
-    "main.js": "/houmPrueba/static/js/main.7df7549f.js",
+    "main.js": "/houmPrueba/static/js/main.033a7187.js",
     "static/media/logopokemon.png": "/houmPrueba/static/media/logopokemon.4a256f2f7ac8ae10b265.png",
     "static/media/pokebola.png": "/houmPrueba/static/media/pokebola.a240f72792c585c2e036.png",
     "static/media/PokemonHollow.ttf": "/houmPrueba/static/media/PokemonHollow.47f77ce9939c5330492b.ttf",
     "static/media/PokemonSolid.ttf": "/houmPrueba/static/media/PokemonSolid.5d60be1f7ff5fcc21fc1.ttf",
     "index.html": "/houmPrueba/index.html",
     "main.cec2493d.css.map": "/houmPrueba/static/css/main.cec2493d.css.map",
-    "main.7df7549f.js.map": "/houmPrueba/static/js/main.7df7549f.js.map"
+    "main.033a7187.js.map": "/houmPrueba/static/js/main.033a7187.js.map"
   },
   "entrypoints": [
     "static/css/main.cec2493d.css",
-    "static/js/main.7df7549f.js"
+    "static/js/main.033a7187.js"
   ]
 }
