@@ -22,6 +22,19 @@ import PropTypes from 'prop-types'
   );
 }
 
+export const SkeletonInfo = (props) => (
+  <ContentLoader
+    speed={2}
+    width={350}
+    height={500}
+    viewBox="0 0 350 500"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="0" y="22" rx="30" ry="30" width="350" height="480" />
+  </ContentLoader>
+);
 /**
   Este componente sirve para crear el numero de skleleton segun el numero de pokemones 
  */

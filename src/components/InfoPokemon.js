@@ -14,6 +14,7 @@ import LogoPokemons from "./../images/logopokemon.webp";
 import { capitalizarPrimeraLetra } from "../utils/strings";
 import { useNotification } from "../context/NotificacionProvider";
 import PropTypes from "prop-types";
+import { SkeletonInfo } from "./Skeleton";
 
 /**
   Este componente sirve para mostrar la informacion generla del pokemon seleccionado o buscado en el "pokedex"
@@ -21,14 +22,13 @@ import PropTypes from "prop-types";
 export const InfoPokemon = memo(({ data }) => {
   const [infoPokemon, setinfoPokemon] = useState(data);
   const [error, seterror] = useState(false);
-  // const [ loading , setloading ] = useState(false)
   const tipo = infoPokemon?.types[0].type.name;
   const inputRef = useRef();
   const dispatchNotificacion = useNotification();
   const imagen = infoPokemon?.sprites.other.dream_world.front_default
 
   const handleNewNotification = (error) => {
-    seterror(true);
+    
     dispatchNotificacion({
       type: "ERROR",
       message: `${error}`,
@@ -42,6 +42,7 @@ export const InfoPokemon = memo(({ data }) => {
   const buscarPokemon = async (e) => {
     if (inputRef.current.value != "" && e.key === "Enter") {
       try {
+        seterror(true);
         let name = inputRef.current.value.toLowerCase();
         const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
         const response = await fetch(url);
@@ -50,7 +51,7 @@ export const InfoPokemon = memo(({ data }) => {
         }
         const result = await response.json();
         setinfoPokemon(result);
-
+        seterror(false)
         inputRef.current.value = "";
       } catch (error) {
         //En caso de tener un error mostramos la notificacion usando el dispatch de la accion
@@ -72,9 +73,8 @@ export const InfoPokemon = memo(({ data }) => {
         placeholder="Search Pokémon"
         search={true}
         onKeyDown={buscarPokemon}
-       
       />
-      {!infoPokemon ? (
+      {!infoPokemon && !error ? (
         <>
           <img
             src="https://houm.com/static/brandImage/houmLogo.svg"
@@ -84,13 +84,11 @@ export const InfoPokemon = memo(({ data }) => {
           <br />
         </>
       ) : (
+        !error ?
         <Pokedex type={tipo}>
           <LogoPokemon src={LogoPokemons} alt="logo pokemon" />
 
-          <ImagenPokemon
-            src={imagen}
-            alt={`imagen ${infoPokemon.name}`}
-          />
+          <ImagenPokemon src={imagen} alt={`imagen ${infoPokemon.name}`} />
 
           <h2>{infoPokemon.name}</h2>
           <span>{tipo.toUpperCase()}</span>
@@ -124,6 +122,7 @@ export const InfoPokemon = memo(({ data }) => {
             alt="logo houm"
           /> */}
         </Pokedex>
+        : <SkeletonInfo/>
       )}
     </ContainerInfo>
   );
