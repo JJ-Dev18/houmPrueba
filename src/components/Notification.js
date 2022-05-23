@@ -6,14 +6,15 @@ import useModeContext from "../context/ModeContext";
 /**
   Este componente sirve para cargar la Notificacion  
  */
-const Notification = memo((props) => {
+const Notification = (props) => {
   const [exit, setExit] = useState(false);
   const [width, setWidth] = useState(0);
   const [intervalID, setIntervalID] = useState(null);
   const { value: modeValue } = useModeContext();
   const { state: modeState } = modeValue;
-
+  
   const handleStartTimer = () => {
+    //Creamos un interval cad 20 segundos aumente el width 
     const id = setInterval(() => {
       setWidth((prev) => {
         if (prev < 100) {
@@ -27,12 +28,13 @@ const Notification = memo((props) => {
 
     setIntervalID(id);
   };
-
+  //Limpiamos el interval
   const handlePauseTimer = () => {
     clearInterval(intervalID);
   };
 
   const handleCloseNotification = () => {
+    //Pausamos el timer, cambiamos la variable exit que le da la animacion ala notificacion y disparamos el dispatch para remover la notificacion
     handlePauseTimer();
     setExit(true);
     setTimeout(() => {
@@ -44,6 +46,7 @@ const Notification = memo((props) => {
   };
 
   useEffect(() => {
+    //Cuando el width llega a 100 se cierra 
     if (width === 100) {
       // Cerrar Notificacion
       handleCloseNotification();
@@ -51,6 +54,7 @@ const Notification = memo((props) => {
   }, [width]);
 
   useEffect(() => {
+    //Cada que se renderice empezamos con el timer 
     handleStartTimer();
   }, []);
 
@@ -62,10 +66,11 @@ const Notification = memo((props) => {
       dark={modeState.darkMode}
     >
       <p>{props.message}</p>
+      {/* Le damos la propiedad width a la barra  */}
       <Bar className={"bar"} style={{ width: `${width}%` }} />
     </NotificacionItem>
   );
-});
+};
 
 export default Notification;
 

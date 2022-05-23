@@ -34,7 +34,7 @@ const Main = () => {
   const dispatchNotificacion = useNotification();
   const total = useRef()
   
-  
+  //Funcion que muestra la notificacion cuando existe un error
   const handleNewNotification = (error) => {
     dispatchNotificacion({
       type: "ERROR",
@@ -42,24 +42,31 @@ const Main = () => {
       title: "Error Request",
     });
   };
-  
+  //Funcion para cambiar el mode con el switch
   const toggleDarkmode = () => {
     modeState.darkMode ? dispatch(lightMode()) : dispatch(darkMode());
   };
-  
+  //Funcion que cambia el estado del pokedex 
   const infoPokemon = useCallback((poke) => setPokeDex(poke), []);
-
+  //Funcion que carga los pokemones
   const getPokemones = async () => {
     try {
+      //ponemos el loading en true para mostrar el skeleton
       setLoading(true);
+      //hacemos el llamado a la funcion de get pokemons pasando parametros de offset y limit
       const res = await getPokemons(cantPokemones, cantPokemones * page);
-      
+      //damos valor al total 
       total.current =res.count;
+      /*Ya que el resultado de getPokemons solo trae url y nombre, ejecutamos la funcion de getPokemon data
+        haciendo un map en el resultado de la peticion */
       const promises = res.results.map(async (pokemon) => {
         return await getPokemonData(pokemon.url);
       });
+      //Ejecutamos todas las promesas 
       const results = await Promise.all(promises);
+      //cambiamos el estado de pokemon con todos los nuevos pokemones con sus respectivos datos 
       setpokemons(results)
+      //cambiamos el loading para ocultar el skeleton 
       setLoading(false);
     } catch (error) {
       handleNewNotification(error);
@@ -67,6 +74,7 @@ const Main = () => {
   };
 
   useEffect(() => {
+    //Usamos el hook para cargar los pokemones cada que cambie la cantidad de pokemones o el numero de pagina
     getPokemones();
   }, [cantPokemones,page]);
 

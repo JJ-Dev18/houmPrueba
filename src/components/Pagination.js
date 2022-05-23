@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 export const Pagination = memo(({inicio,final,total,setCantPokemones,page,setpage}) => {
   
-  
+  //Con esta funcion cambiamos la cantidad de pokemones para que se rerendericen las tarjetas 
   const onSelected = (e) => {
     let cantidad = parseInt(e.target.value);
     setCantPokemones(cantidad);
@@ -18,6 +18,7 @@ export const Pagination = memo(({inicio,final,total,setCantPokemones,page,setpag
   return (
     <>
       <ContentButtons className="btn-group">
+        
         {page > 0 && (
           <Button
             onClick={() => {

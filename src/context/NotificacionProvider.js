@@ -9,6 +9,7 @@ import { WrapperNotificacion } from "../styles/Notificacion";
 
 const NotificationContext = createContext();
 
+//Provider para tener las distintas acciones de la notificacion 
 const NotificationProvider = (props) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
@@ -20,7 +21,7 @@ const NotificationProvider = (props) => {
         return state;
     }
   }, []);
-
+  //Retornamos la notificacion envuelta en el provider 
   return (
     <NotificationContext.Provider value={dispatch}>
       <WrapperNotificacion>
@@ -33,9 +34,10 @@ const NotificationProvider = (props) => {
   );
 };
 
+//funcion para usar la notificacion y el context 
 export const useNotification = () => {
   const dispatch = useContext(NotificationContext);
-
+   
   return (props) => {
     dispatch({
       type: "ADD_NOTIFICATION",

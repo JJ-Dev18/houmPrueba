@@ -4,6 +4,7 @@
  */
 
 export const _handleError = (status) => {
+  //Dependiendo del status enviamos un error
   if (status === 404) {
     throw new NotFoundError();
   }
@@ -13,6 +14,8 @@ export const _handleError = (status) => {
   }
 }
 
+//Maneja los errores para modificar el mensaje de error 
+
 export const  _throwSpecificError = (err) => {
   if (err instanceof ServerError || err instanceof NotFoundError) {
     throw err;
@@ -20,6 +23,7 @@ export const  _throwSpecificError = (err) => {
   throw new NetworkError();
 }
 
+//Los tipos de error que podemos encontrar 
 export class NetworkError extends Error {
   constructor() {
     super("Error de conexión");

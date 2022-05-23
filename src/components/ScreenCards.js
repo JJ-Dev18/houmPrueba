@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 export const ScreenCards = ({data,loading,cantPokemones,infoPokemon}) => {
   
   const [pokemons, setpokemons] = useState(data)
-
+ //Funcion para filtrar las cards de pokemones que se estan mostrando por pagina 
    const handleFilter = (e) => {
      let name = e.target.value;
       if (name !== " ") {

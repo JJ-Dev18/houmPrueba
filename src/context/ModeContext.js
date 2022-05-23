@@ -5,6 +5,7 @@ import { createContext, useContext, useReducer } from "react";
  */
 export const ModeContext = createContext(null);
 
+//Utilizamos lo que haya en el localstorage como initialState si no damos un initialState 
 const initialState = JSON.parse(localStorage.getItem("mode")) || {
   darkMode: false,
   lightMode: true,
@@ -13,6 +14,7 @@ const initialState = JSON.parse(localStorage.getItem("mode")) || {
 const reducer = (state, action) => {
   switch (action.type) {
     case "darkMode": {
+      //guardamos lo que hicimos para mantener las preferencias del usuario
      localStorage.setItem(
        "mode",
        JSON.stringify({

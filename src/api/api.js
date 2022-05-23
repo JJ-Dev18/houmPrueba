@@ -1,5 +1,6 @@
 import { _handleError, _throwSpecificError } from "../errors/errors";
 
+//Funcion para traer la lista de los pokemones 
 export const getPokemons = async (limit = 25, offset = 0) => {
   try {
     let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
@@ -14,6 +15,7 @@ export const getPokemons = async (limit = 25, offset = 0) => {
   }
 };
 
+//Funcion para traer la informacion de cada pokemon 
 export const getPokemonData = async (url) => {
   try {
     const response = await fetch(url);

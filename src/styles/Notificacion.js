@@ -6,13 +6,13 @@ const SlideTop = keyframes`
     }
 
     100% {
-        margin-top: 0;
+        margin-top: -100px;
     }
 `;
 
 const SlideBottom = keyframes`
     0% {
-        margin-top: 0;
+        margin-top: -100px;
     }
 
 

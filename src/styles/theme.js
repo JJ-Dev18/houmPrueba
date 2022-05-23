@@ -36,6 +36,22 @@ export const GlobalStyles = createGlobalStyle`
          src: url(${pokemonHollow}) ;
     }
 
+    select{
+      width:40px ;
+      border-radius : 7px;
+       &:focus{
+         /* border-color :  ${(props) => props.theme.button}; */
+       }
+    }
+    option{
+       border-radius : 7px;
+      &:checked{
+        /* background : ${(props) => props.theme.button}; */
+        /* color : red; */
+         border-radius : 7px;
+      }
+    }
+
  body{
    background-color : ${(props) => props.theme.background};
  }
