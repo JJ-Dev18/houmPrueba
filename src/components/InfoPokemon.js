@@ -25,7 +25,7 @@ export const InfoPokemon = memo(({ data }) => {
   const tipo = infoPokemon?.types[0].type.name;
   const inputRef = useRef();
   const dispatchNotificacion = useNotification();
-
+  const imagen = infoPokemon?.sprites.other.dream_world.front_default
 
   const handleNewNotification = (error) => {
     seterror(true);
@@ -88,7 +88,7 @@ export const InfoPokemon = memo(({ data }) => {
           <LogoPokemon src={LogoPokemons} alt="logo pokemon" />
 
           <ImagenPokemon
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${infoPokemon.id}.svg`}
+            src={imagen}
             alt={`imagen ${infoPokemon.name}`}
           />
 
