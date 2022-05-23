@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/houmPrueba/static/css/main.cec2493d.css",
-    "main.js": "/houmPrueba/static/js/main.4386e699.js",
-    "static/media/logopokemon.png": "/houmPrueba/static/media/logopokemon.4a256f2f7ac8ae10b265.png",
-    "static/media/pokebola.png": "/houmPrueba/static/media/pokebola.a240f72792c585c2e036.png",
+    "main.js": "/houmPrueba/static/js/main.73fb494a.js",
+    "static/media/logopokemon.webp": "/houmPrueba/static/media/logopokemon.a2c35957956b643241a3.webp",
     "static/media/PokemonHollow.ttf": "/houmPrueba/static/media/PokemonHollow.47f77ce9939c5330492b.ttf",
+    "static/media/pokebola.webp": "/houmPrueba/static/media/pokebola.6777a34bc4c4af81b9a0.webp",
     "static/media/PokemonSolid.ttf": "/houmPrueba/static/media/PokemonSolid.5d60be1f7ff5fcc21fc1.ttf",
     "index.html": "/houmPrueba/index.html",
     "main.cec2493d.css.map": "/houmPrueba/static/css/main.cec2493d.css.map",
-    "main.4386e699.js.map": "/houmPrueba/static/js/main.4386e699.js.map"
+    "main.73fb494a.js.map": "/houmPrueba/static/js/main.73fb494a.js.map"
   },
   "entrypoints": [
     "static/css/main.cec2493d.css",
-    "static/js/main.4386e699.js"
+    "static/js/main.73fb494a.js"
   ]
 }
