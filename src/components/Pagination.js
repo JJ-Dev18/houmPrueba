@@ -17,7 +17,7 @@ export const Pagination = memo(({inicio,final,total,setCantPokemones,page,setpag
   
   return (
     <>
-      <ContentButtons className="btn-group">
+      <ContentButtons >
         {page > 0 && (
           <Button
             onClick={() => {
@@ -50,7 +50,6 @@ export const Pagination = memo(({inicio,final,total,setCantPokemones,page,setpag
           {inicio + 1} - {final} of {total}
         </span>
         <br />
-        {/* <p>page: {page + 1 }</p> */}
       </ContainerPagination>
     </>
   );

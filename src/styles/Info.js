@@ -1,4 +1,4 @@
-import styled , {css}from 'styled-components'
+import styled from 'styled-components'
 import { Card } from './Card';
 
 
@@ -17,18 +17,11 @@ export const Pokedex = styled(Card)`
   align-items: center;
   flex-direction: column;
   width: 350px;
-  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
-  /* box-shadow: 4px 4px 30px rgb(0 43 41 / 15%); */
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   position: relative;
   height: ${(props) => (props.home ? "200px" : "500px")};
-  /* transition: 0.5s ease all; */
+
   margin-top: 30px;
   span {
     background: ${(props) => props.theme.titulos};
@@ -68,7 +61,6 @@ position: absolute;
 top: 0;
 left:10px;
 width:100px;
-/* height:100px ; */
 
 `
 export const ContainerStats = styled.div`
@@ -86,11 +78,6 @@ export const ContainerCharact = styled.div`
   display: flex;
   padding: 10px;
   justify-content: space-between;
-
-  /* position:absolute;
-top:0; */
-
-  /* border: 1px solid green; */
   border-radius: 0 0 20px 20px;
 `;
 export const Stat = styled.div`
@@ -101,7 +88,6 @@ export const Stat = styled.div`
   width: 100%;
   padding: 5px;
   border-radius: 10px;
-  /* border-top: ${(props) => props.theme.button} 1px solid; */
   border-bottom: ${(props) => props.theme.button} 1px solid;
  
 `;

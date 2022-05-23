@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import pokemonSolid from '../fonts/PokemonSolid.ttf'
-import pokemonHollow from "../fonts/PokemonHollow.ttf";
 
 
 export const ligthTheme = {
@@ -35,15 +34,11 @@ export const GlobalStyles = createGlobalStyle`
     select{
       width:40px ;
       border-radius : 7px;
-       &:focus{
-         /* border-color :  ${(props) => props.theme.button}; */
-       }
+      
     }
     option{
        border-radius : 7px;
       &:checked{
-        /* background : ${(props) => props.theme.button}; */
-        /* color : red; */
          border-radius : 7px;
       }
     }

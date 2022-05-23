@@ -1,6 +1,6 @@
 import styled from 'styled-components'  
 import poke from '../images/pokebola.webp'
-import logoPokemon from "../images/logopokemon.webp";
+
 
 
 export const MainContainer = styled.div`

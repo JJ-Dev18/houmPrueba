@@ -67,7 +67,7 @@ const Notification = (props) => {
     >
       <p>{props.message}</p>
       {/* Le damos la propiedad width a la barra  */}
-      <Bar className={"bar"} style={{ width: `${width}%` }} />
+      <Bar  style={{ width: `${width}%` }} />
     </NotificacionItem>
   );
 };

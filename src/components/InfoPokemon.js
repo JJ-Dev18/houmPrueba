@@ -26,10 +26,9 @@ export const InfoPokemon = memo(({ data }) => {
   const tipo = infoPokemon?.types[0].type.name;
   const inputRef = useRef();
   const dispatchNotificacion = useNotification();
-  const imagen = infoPokemon?.sprites.other.dream_world.front_default
+  const imagen = infoPokemon?.sprites.other.dream_world.front_default;
 
   const handleNewNotification = (error) => {
-    
     dispatchNotificacion({
       type: "ERROR",
       message: `${error}`,
@@ -52,7 +51,7 @@ export const InfoPokemon = memo(({ data }) => {
         }
         const result = await response.json();
         setinfoPokemon(result);
-        seterror(false)
+        seterror(false);
         inputRef.current.value = "";
       } catch (error) {
         //En caso de tener un error mostramos la notificacion usando el dispatch de la accion

@@ -1,7 +1,6 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 import PropTypes from 'prop-types'
-import { ContainerSkeleton } from "../styles/Info";
 
 /**
   Este componente sirve para crear el skeleton de cada card 
